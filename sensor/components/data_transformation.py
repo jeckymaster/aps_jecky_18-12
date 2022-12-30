@@ -6,7 +6,7 @@ import os, sys
 from sensor import utils
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import Pipeline
+from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder
 from imblearn.combine import SMOTETomek
 from sklearn.impute import SimpleImputer
@@ -28,7 +28,7 @@ class DataTransformation:
     @classmethod
     def get_data_transformer_object(cls)->Pipeline:
         try:
-            simple_imputer - SimpleImputer(strategy="constant", fill_value=0)
+            simple_imputer = SimpleImputer(strategy="constant", fill_value=0)
             robust_scaler = RobustScaler()
 
             pipeline = Pipeline(steps=[
@@ -87,10 +87,10 @@ class DataTransformation:
             utils.save_numpy_array_data(file_path=self.data_transformation_config.transformed_test_path,
                                     array=test_arr)
             utils.save_numpy_array_data(file_path=self.data_transformation_config.transform_object_path,
-                                        obj=transformation_pipeline)
+                                    array=transformation_pipeline)
 
             utils.save_numpy_array_data(file_path=self.data_transformation_config.target_encoder_path,
-                                        obj=lable_encoder)
+                                    array=lable_encoder)
 
 
             data_transformation_artifact = artifact_entity.DataTransformationArtifact(
@@ -99,7 +99,7 @@ class DataTransformation:
                 transformed_test_path = self.data_transformation_config.transformed_test_path, 
                 target_encoder_path = self.data_transformation_config.target_encoder_path
                 )
-            logging.info(f"Data transformation object {data_transformation_artifcat}")
+            logging.info(f"Data transformation object {data_transformation_artifact}")
             return data_transformation_artifact
 
         except Exception as e:

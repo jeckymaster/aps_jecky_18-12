@@ -1,11 +1,11 @@
-from sensor.entity import artifact_entity, config_entity
+from sensor.entity import artifact_entity,config_entity
 from sensor.exception import SensorException
 from sensor.logger import logging
 from scipy.stats import ks_2samp
 from typing import Optional
-import os, sys
-from sensor import utils
+import os,sys 
 import pandas as pd
+from sensor import utils
 import numpy as np
 from sensor.config import TARGET_COLUMN
 
@@ -146,7 +146,7 @@ class DataValidation:
             utils.write_yaml_file(file_path=self.data_validation_config.report_file_path, 
                                 data=self.validation_error)
 
-            data_validation_artifcat = artifact_entity.DataValidationArtifact(report_file_path=data_validation_config.report_file_path,)
+            data_validation_artifcat = artifact_entity.DataValidationArtifact(report_file_path=self.data_validation_config.report_file_path,)
             logging.info(f"Data validation artifact:{data_validation_artifcat}")
             return data_validation_artifcat
         except Exception as e:
